@@ -227,6 +227,8 @@ def create_gui():
     tk.Label(enhance_frame, text="Brightness Factor:").pack(side=tk.LEFT, padx=5)
     brightness_entry = tk.Entry(enhance_frame, width=5)
     brightness_entry.pack(side=tk.LEFT, padx=5)
+    brightness_entry.insert(0, str(default_brightness_factor))
+
     brightness_button = tk.Button(enhance_frame, text="Set Brightness", command=lambda: adjust_brightness(brightness_entry))
     brightness_button.pack(side=tk.LEFT, padx=5)
 
