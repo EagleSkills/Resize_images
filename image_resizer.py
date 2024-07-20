@@ -36,9 +36,10 @@ def resize_image(image_path, width, height):
         
         filename = os.path.basename(image_path)
 
-        if output_folder is None:
-            output_folder = os.path.join(os.path.dirname(image_path), "Resized")
-            os.makedirs(output_folder, exist_ok=True)
+        # Set the output folder to be the "Resized" folder in the same location as the selected image
+        image_folder = os.path.dirname(image_path)
+        output_folder = os.path.join(image_folder, "Resized")
+        os.makedirs(output_folder, exist_ok=True)
 
         img_resized.save(os.path.join(output_folder, filename))
         
@@ -91,7 +92,7 @@ def process_images(listbox, width_entry, height_entry):
         for file_path in file_paths:
             success = resize_image(file_path, width, height)
             if not success:
-                messagebox.showerror("Error", "Failed to resize {file_path}")
+                messagebox.showerror("Error", f"Failed to resize {file_path}")
         messagebox.showinfo("Completed", "All images have been resized.")
     else:
         messagebox.showwarning("Warning", "No images selected.")
